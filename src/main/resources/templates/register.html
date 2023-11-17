@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Registration</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Student Registration</h1>
+        <form th:action="@{/register}" method="post">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required minlength="5">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <small style="color: red;">(Minimum 5 characters)</small>
+
+            <label for="retypePassword">Re-type Password:</label>
+            <input type="password" id="retypePassword" name="retypePassword" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3"></textarea>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city">
+
+            <label for="postalCode">Postal Code:</label>
+            <input type="text" id="postalCode" name="postalCode">
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

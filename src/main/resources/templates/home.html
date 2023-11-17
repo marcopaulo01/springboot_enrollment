@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/home.css}">
+</head>
+<body>
+    <h1>Welcome <span th:text="${student.firstName}"></span> <span th:text="${student.lastName}"></span></h1>
+    
+    <form th:action="@{'/edit/' + ${student.studentId}}" method="get">
+        <h2>Student Information</h2>
+        <input type="hidden" name="studentId" th:value="${student.studentId}">
+        
+        <p><span class="bold-label label">Student ID:</span> <span class="value" th:text="${student.studentId}"></span></p>
+		<p><span class="bold-label label">Address:</span> <span class="value" th:text="${student.address}"></span></p>
+		<p><span class="bold-label label">City:</span> <span class="value" th:text="${student.city}"></span></p>
+		<p><span class="bold-label label">Postal Code:</span> <span class="value" th:text="${student.postalCode}"></span></p>
+        <button type="submit">Edit</button>
+    </form>
+
+    <form th:action="@{'/enroll/' + ${student.studentId}}" method="get">
+        <h2>Enrollment Information</h2>
+        <input type="hidden" name="studentId" th:value="${student.studentId}">
+        
+        <div th:if="${enrollment != null}">
+            <p><span class="bold-label label">Application No:</span> <span th:text="${enrollment.applicationNo}"></span></p>
+            <p><span class="bold-label label">Program Code:</span> <span th:text="${program.programCode}"></span></p>
+            <p><span class="bold-label label">Program Name:</span> <span th:text="${program.programName}"></span></p>
+            <p><span class="bold-label label">Start Date:</span> <span th:text="${enrollment.startDate}"></span></p>
+        </div>
+        
+        <div th:if="${enrollment == null}">
+            <button type="submit">Enroll Now</button>
+        </div>
+    </form>
+    
+    <form class="transparent-form" action="/" method="get">
+    	<button class="logout-button" type="submit">Logout</button>
+	</form>
+    
+</body>
+</html>

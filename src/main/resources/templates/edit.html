@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Student Information</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/edit.css}">
+</head>
+<body>
+    <h1><span th:text="${student.firstName}"></span> <span th:text="${student.lastName}"></span></h1>
+    <form th:action="@{'/update/' + ${student.studentId}}" method="post">
+        <h2>Edit Student Details</h2>
+        
+        <input type="hidden" name="studentId" th:value="${student.studentId}">
+        <input type="hidden" name="firstName" th:value="${student.firstName}">
+		<input type="hidden" name="lastName" th:value="${student.lastName}">		
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" th:value="${student.password}" required minlength="5">
+        <small style="color: red;">(Minimum 5 characters)</small>
+        
+        <label for="retypePassword">Re-type Password:</label>
+        <input type="password" id="retypePassword" name="retypePassword" th:value="${student.retypePassword}" required>
+        
+        <label for="address">Address</label>
+    	<textarea name="address" id="address" rows="3" th:value="${student.address}"></textarea>
+        
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" th:value="${student.city}">
+        
+        <label for="postalCode">Postal Code:</label>
+        <input type="text" id="postalCode" name="postalCode" th:value="${student.postalCode}">
+        
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>
